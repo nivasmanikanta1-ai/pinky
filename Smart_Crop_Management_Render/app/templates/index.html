@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Crop Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef7ee;
+            margin: 0;
+            padding: 30px;
+            text-align: center;
+        }
+        .container {
+            max-width: 750px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+        }
+        h1 { color: #246b2b; }
+        input {
+            padding: 12px;
+            width: 60%;
+            border: 1px solid #aaa;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        button {
+            padding: 12px 20px;
+            background: #2e7d32;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        table {
+            width: 100%;
+            margin-top: 25px;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+        }
+        th {
+            background: #2e7d32;
+            color: white;
+        }
+        .error { color: #c62828; margin-top: 15px; }
+        .hint { color: #555; margin-top: 15px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🌱 Smart Crop Management System</h1>
+    <p>Enter a crop name to view basic crop management information.</p>
+
+    <form method="POST">
+        <input type="text" name="crop" placeholder="Enter crop: Rice, Wheat, Cotton" value="{{ crop }}">
+        <button type="submit">Check Crop</button>
+    </form>
+
+    <p class="hint">Supported Crops: Rice, Wheat, Cotton</p>
+
+    {% if message %}
+        <p class="error">{{ message }}</p>
+    {% endif %}
+
+    {% if data %}
+    <table>
+        <tr>
+            <th>Crop</th>
+            <th>Temperature</th>
+            <th>Humidity</th>
+            <th>Soil</th>
+            <th>Irrigation</th>
+            <th>Health</th>
+        </tr>
+        <tr>
+            <td>{{ crop|title }}</td>
+            <td>{{ data.temperature }}</td>
+            <td>{{ data.humidity }}</td>
+            <td>{{ data.soil }}</td>
+            <td>{{ data.irrigation }}</td>
+            <td>{{ data.health }}</td>
+        </tr>
+    </table>
+    {% endif %}
+</div>
+</body>
+</html>
