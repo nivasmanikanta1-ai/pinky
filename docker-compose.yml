@@ -1,0 +1,7 @@
+services:
+  crop-app:
+    build: .
+    container_name: smart-crop-management
+    ports:
+      - "5000:5000"
+    restart: unless-stopped
